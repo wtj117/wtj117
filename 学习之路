@@ -1,3 +1,4 @@
+**********流程**********
 mysql查询操作流程  客户端 -》 连接器 -》 分析器 -》 优化器 -》 执行器 -》 存储引擎（InnoDB、MyISAM、Memory）
 mysql更新操作流程  innodb有redolog的日志记录， binlog是mysql的server层共有的和存储层没有关系 
                   redolog相当于暂时存储更新数据（有存储更新sql和存储数据变化前后两条数据）日志  binlog是存储了所有的更新操作的日志，写在磁盘上 
@@ -8,7 +9,7 @@ mysql更新操作流程  innodb有redolog的日志记录， binlog是mysql的ser
 4.执行器生成这个操作的binlog，并把binlog写入磁盘。
 5.执行器调用引擎的提交事务接口，引擎把刚刚写入的redo log改成提交（commit）状态，更新完成。
 
-
+**********事务**********
 不同事务隔离级别的区别：
 读未提交：一个事务还未提交，它所做的变更就可以被别的事务看到
 读提交：一个事务提交之后，它所做的变更才可以被别的事务看到
@@ -21,14 +22,19 @@ mysql更新操作流程  innodb有redolog的日志记录， binlog是mysql的ser
 5、事务启动方式：一、显式启动事务语句，begin或者start transaction,提交commit，回滚rollback；二、set autocommit=0，该命令会把这个线程的自动提交关掉。这样只要执行一个select语句，事务就启动，并不会自动提交，直到主动执行commit或rollback或断开连接。
 6、建议使用方法一，如果考虑多一次交互问题，可以使用commit work and chain语法。在autocommit=1的情况下用begin显式启动事务，如果执行commit则提交事务。如果执行commit work and chain则提交事务并自动启动下一个事务。
 
+**********索引**********
 索引：mysql的innodb使用的都是B+树结构索引
 主键查询方式，则只需要搜索ID这棵B+树
 普通索引查询方式，则需要先搜索k索引树，得到ID的值为500，再到ID索引树搜索一次。这个过程称为回表。
 
+覆盖索引 查询的值保存在索引上了，不需要再回表查询主键再查询数据信息
+前缀索引 通过调整顺序，可以少维护一个索引，那么这个顺序往往就是需要优先考虑采用的 
+索引下推 mysql5.6版本之后索引会根据查询的条件每一个都比较之后再回表（mysql的自身优化）
 
 
-
-
+**********锁**********
+MySQL里面的锁大致可以分成全局锁、表级锁和行锁三类
+全局锁的典型使用场景是，做全库逻辑备份 Flush tables with read lock (FTWRL)
 
 
 
