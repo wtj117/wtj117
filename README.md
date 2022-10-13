@@ -1,4 +1,5 @@
 ### Hi there 👋
+记录的自己的学习和工作实践
 
 <!--
 **wtj117/wtj117** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
