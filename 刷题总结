@@ -23,3 +23,5 @@ public int distinctSubseqII(String s) {
    数组preCount来记录上一次该字符新增的个数  前缀和
 
 滑动窗口  遍历右指针，遍历过程移动左指针
+
+lru  删除最近最少调用的元素   linkedhashmap有一个removeEldestEntry重写超出大小可以实现 或者 使用hashmap和双向列表保证了操作的O（1）
