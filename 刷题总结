@@ -20,4 +20,6 @@ public int distinctSubseqII(String s) {
         return curAns - 1;
     }
     
-   数组preCount来记录上一次该字符新增的个数
+   数组preCount来记录上一次该字符新增的个数  前缀和
+
+滑动窗口  遍历右指针，遍历过程移动左指针
