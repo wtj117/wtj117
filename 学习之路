@@ -34,13 +34,15 @@ mysql更新操作流程  innodb有redolog的日志记录， binlog是mysql的ser
 
 **********锁**********
 MySQL里面的锁大致可以分成全局锁、表级锁和行锁三类
-全局锁的典型使用场景是，做全库逻辑备份 Flush tables with read lock (FTWRL)
-
-
+1.全局锁的典型使用场景是，做全库逻辑备份 Flush tables with read lock (FTWRL)
+2.MySQL里面表级锁有两种，一种是表锁，一种是元数据所(meta data lock,MDL) 
+MDL的作用：保证读写的正确性。
+在对一个表做增删改查操作的时候，加MDL读锁；当要对表做结构变更操作的时候，加MDL写锁。
+读锁之间不互斥。读写锁之间，写锁之间是互斥的，用来保证变更表结构操作的安全性。
+MDL 会直到事务提交才会释放，在做表结构变更的时候，一定要小心不要导致锁住线上查询和更新。
 
 
 数据库事务  ACID（Atomicity、Consistency、Isolation、Durability，即原子性、一致性、隔离性、持久性）   
 分布式系统  Consistency（一致性）、 Availability（可用性）、Partition tolerance（分区容错性），三者不可得兼。
 
-StringBuffer  支持并发操作，线性安全的，适合多线程中使用。
-StringBuilder 不支持并发操作，线性不安全的，不适合多线程中使用，但其在单线程中的性能比StringBuffer高。
+
