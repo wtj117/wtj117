@@ -25,3 +25,22 @@ public int distinctSubseqII(String s) {
 滑动窗口  遍历右指针，遍历过程移动左指针
 
 lru  删除最近最少调用的元素   linkedhashmap有一个removeEldestEntry重写超出大小可以实现 或者 使用hashmap和双向列表保证了操作的O（1）
+
+dp动态规划，找到取与不取得条件  获取转移方程
+
+二分查找
+public int search(int[] nums, int target) {
+    int lo = 0, hi = nums.length - 1, mid = 0;
+    while (lo <= hi) {
+        mid = lo + (hi - lo) / 2;
+        if (nums[mid] == target) {
+            return mid;
+        }
+        if (nums[mid] < target) {
+            lo = mid + 1;
+        } else {
+            hi = mid - 1;
+        }
+    }
+    return -1;
+}
