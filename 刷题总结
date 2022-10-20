@@ -44,3 +44,5 @@ public int search(int[] nums, int target) {
     }
     return -1;
 }
+
+n&(n-1) 用来判断一个数得二进制得1得个数   Integer.bitcount()       与（ & ）、或（ | ）、异或（ ^ ）、取反（ ~ ）、左移（ << ）和右移（ >> ）
