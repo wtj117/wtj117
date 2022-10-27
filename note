@@ -1,6 +1,0 @@
-StringBuffer  支持并发操作，线性安全的，适合多线程中使用。
-StringBuilder 不支持并发操作，线性不安全的，不适合多线程中使用，但其在单线程中的性能比StringBuffer高。
-
-java内存模型的总结 https://zhuanlan.zhihu.com/p/29881777  
-volatile总结 （保证内存可见性：Lock前缀的指令、内存屏障禁止重排序）
-synchronized总结 （保证内存可见性和操作原子性：互斥锁；锁优化）
